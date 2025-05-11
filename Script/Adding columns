@@ -1,0 +1,32 @@
+-- to calculate the days between order date and ship date
+
+
+    DATEDIFF(day, Order_Date, Ship_Date) AS Shipping_Days,
+
+--finde the cost 
+   Sales - Profit AS Cost,
+
+the full table that I upload to Power BI
+
+
+SELECT 
+    Order_ID,
+    Order_Date,
+    Ship_Date,
+    DATEDIFF(day, Order_Date, Ship_Date) AS Shipping_Days,
+    Ship_Mode,
+    Customer_ID,
+    Customer_Name,
+    Segment,
+    Country,
+    Region,
+    State,
+    Product_ID,
+    Category,
+    Sub_Category,
+    Sales,
+    Sales - Profit AS Cost,
+    Quantity,
+    Discount,
+    Profit
+FROM dbo.Superstore1;
