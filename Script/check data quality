@@ -1,0 +1,42 @@
+--CHECK_DUPLICATES OF ROW_ID 
+SELECT 
+* 
+FROM 
+(
+SELECT 
+ROW_NUMBER() OVER (PARTITION BY Row_ID ORDER BY Row_ID) AS FLAG 
+FROM dbo.Superstore1
+) t 
+WHERE FLAG > 1
+
+
+--CHECK_DUPLICATES OF ORDER_ID 
+SELECT 
+COUNT(Order_ID) AS Check_Duplicates  
+FROM dbo.Superstore1
+GROUP BY Order_ID
+HAVING COUNT(*) > 1
+
+--CHECK ORDER DATE AND SHIP DATE 
+SELECT 
+Order_Date,
+Ship_Date
+FROM dbo.Superstore1
+WHERE Order_Date > Ship_Date
+
+-- CHECK THE VALUES OF THE SHIP_MODE
+SELECT 
+DISTINCT Ship_Mode
+FROM dbo.Superstore1
+
+-- CHECK TRIM FOR CUSTOMER NAME 
+SELECT 
+Customer_Name
+FROM dbo.Superstore1
+WHERE Customer_Name != TRIM(Customer_Name)
+
+-- CHECL SEGMENTS 
+SELECT DISTINCT Segment
+FROM dbo.Superstore1
+
+
